@@ -4,7 +4,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +23,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.leo.material.fragment.FirstFragment;
+import com.android.leo.material.fragment.SecondFragment;
+import com.android.leo.material.fragment.ThirdFragment;
+
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
     private DrawerLayout drawerLayout;
     private TextInputLayout textInputLayout;
     private Button btnOk;
     private EditText editText;
+    private TabLayout tabLayout;
+    private ViewPager viewpager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,43 +59,46 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawyer);
         textInputLayout = (TextInputLayout) findViewById(R.id.til_edit);
         editText = (EditText) findViewById(R.id.edit_name);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        if (editText != null) {
+            editText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-               if(s!=null && s.length()<6){
-                   textInputLayout.setErrorEnabled(true);
-                   textInputLayout.setError("name should have six characters!");
-               }else{
-                   textInputLayout.setErrorEnabled(false);
-               }
-            }
-        });
-        btnOk = (Button) findViewById(R.id.btn_ok);
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(TextUtils.isEmpty(textInputLayout.getEditText().getText())){
-                    textInputLayout.setErrorEnabled(true);
-                    textInputLayout.setError("empty text!");
-                }else if(editText.getText().length()<6) {
-                    textInputLayout.setErrorEnabled(true);
-                    textInputLayout.setError("name should have six characters!");
-                }else{
-                    textInputLayout.setErrorEnabled(false);
                 }
-            }
-        });
 
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (s != null && s.length() < 6) {
+                        textInputLayout.setErrorEnabled(true);
+                        textInputLayout.setError("name should have six characters!");
+                    } else {
+                        textInputLayout.setErrorEnabled(false);
+                    }
+                }
+            });
+        }
+        btnOk = (Button) findViewById(R.id.btn_ok);
+        if (btnOk != null) {
+            btnOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (TextUtils.isEmpty(textInputLayout.getEditText().getText())) {
+                        textInputLayout.setErrorEnabled(true);
+                        textInputLayout.setError("empty text!");
+                    } else if (editText.getText().length() < 6) {
+                        textInputLayout.setErrorEnabled(true);
+                        textInputLayout.setError("name should have six characters!");
+                    } else {
+                        textInputLayout.setErrorEnabled(false);
+                    }
+                }
+            });
+        }
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -133,7 +148,52 @@ public class MainActivity extends AppCompatActivity {
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
+        viewpager = (ViewPager) findViewById(R.id.pager);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        MyFixedPagerAdapter adapter = new MyFixedPagerAdapter(getSupportFragmentManager());
+        viewpager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewpager);
 
+    }
+
+    private class MyFixedPagerAdapter extends FragmentPagerAdapter {
+
+        public MyFixedPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new FirstFragment();
+                case 1:
+                    return new SecondFragment();
+                case 2:
+                    return new ThirdFragment();
+                default:
+                    return new FirstFragment();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position){
+                case 0:
+                    return "First";
+                case 1:
+                    return "Second";
+                case 2:
+                    return "Third";
+                default:
+                    return "First";
+            }
+        }
     }
 
     @Override

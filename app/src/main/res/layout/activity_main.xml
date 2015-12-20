@@ -6,32 +6,45 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.android.leo.material.MainActivity">
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawyer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <include layout="@layout/content_main" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>
+            <!--
+            <include layout="@layout/content_main" />
+            -->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.design.widget.TabLayout>
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <!-- your content layout -->
+            </android.support.v4.view.ViewPager>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!-- your content layout -->
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav"
@@ -39,9 +52,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:elevation="10dp"
+            android:fitsSystemWindows="true"
             app:headerLayout="@layout/drawer_header"
-            app:menu="@menu/drawer"
-            android:fitsSystemWindows="true"/>
+            app:menu="@menu/drawer" />
     </android.support.v4.widget.DrawerLayout>
 
 

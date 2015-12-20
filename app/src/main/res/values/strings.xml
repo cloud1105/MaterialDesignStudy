@@ -7,4 +7,7 @@
     <string name="closeDrawer">Close</string>
     <string name="name">name</string>
     <string name="ok">OK</string>
+    <string name="fragment_first">FirstFragment</string>
+    <string name="fragment_second">SecondFragment</string>
+    <string name="fragment_third">ThirdFragment</string>
 </resources>
