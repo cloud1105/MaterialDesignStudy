@@ -5,4 +5,6 @@
     <string name="navigation_item_2">ItemTwo</string>
     <string name="openDrawer">Open</string>
     <string name="closeDrawer">Close</string>
+    <string name="name">name</string>
+    <string name="ok">OK</string>
 </resources>

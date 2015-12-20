@@ -4,18 +4,26 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private NavigationView nav;
     private DrawerLayout drawerLayout;
-
+    private TextInputLayout textInputLayout;
+    private Button btnOk;
+    private EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +45,45 @@ public class MainActivity extends AppCompatActivity {
         });
         nav = (NavigationView) findViewById(R.id.nav);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawyer);
+        textInputLayout = (TextInputLayout) findViewById(R.id.til_edit);
+        editText = (EditText) findViewById(R.id.edit_name);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+               if(s!=null && s.length()<6){
+                   textInputLayout.setErrorEnabled(true);
+                   textInputLayout.setError("name should have six characters!");
+               }else{
+                   textInputLayout.setErrorEnabled(false);
+               }
+            }
+        });
+        btnOk = (Button) findViewById(R.id.btn_ok);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(textInputLayout.getEditText().getText())){
+                    textInputLayout.setErrorEnabled(true);
+                    textInputLayout.setError("empty text!");
+                }else if(editText.getText().length()<6) {
+                    textInputLayout.setErrorEnabled(true);
+                    textInputLayout.setError("name should have six characters!");
+                }else{
+                    textInputLayout.setErrorEnabled(false);
+                }
+            }
+        });
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
