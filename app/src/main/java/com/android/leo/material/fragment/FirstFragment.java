@@ -1,6 +1,7 @@
 package com.android.leo.material.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -11,8 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.leo.material.ItemDetailActivity;
 import com.android.leo.material.R;
 import com.android.leo.material.view.DividerItemDecoration;
 
@@ -108,7 +109,9 @@ public class FirstFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         CharSequence source = txv.getText();
-                        Toast.makeText(mParent,source,Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(mParent, ItemDetailActivity.class);
+                        intent.putExtra(ItemDetailActivity.TITLE_TO_SHOW,source);
+                        startActivity(intent);
                     }
                 });
             }
