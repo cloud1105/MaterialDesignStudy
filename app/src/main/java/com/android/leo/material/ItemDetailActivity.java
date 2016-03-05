@@ -42,7 +42,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         mCollapsingToolbarLayout.setTitle(title);
         //通过CollapsingToolbarLayout修改字体颜色
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
-        mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.YELLOW);//设置收缩后Toolbar上字体的颜色
+        mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);//设置收缩后Toolbar上字体的颜色
         // imageView是一个ImageView实例
         // ImageLoader.getImageListener的第二个参数是默认的图片resource id
         // 第三个参数是请求失败时候的资源id，可以指定为0

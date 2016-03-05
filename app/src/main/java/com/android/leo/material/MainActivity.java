@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         nav = (NavigationView) findViewById(R.id.nav);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawyer);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         textInputLayout = (TextInputLayout) findViewById(R.id.til_edit);
         editText = (EditText) findViewById(R.id.edit_name);
         if (editText != null) {
@@ -111,12 +111,16 @@ public class MainActivity extends AppCompatActivity {
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
                 switch (menuItem.getItemId()) {
-                    case R.id.navigation_item_1:
-                        Toast.makeText(MainActivity.this, "click item1", Toast.LENGTH_SHORT).show();
+                    case R.id.nav_home:
+                        Toast.makeText(MainActivity.this, "click home", Toast.LENGTH_SHORT).show();
                         return true;
-                    case R.id.navigation_item_2:
-                        Toast.makeText(MainActivity.this, "click item2", Toast.LENGTH_SHORT).show();
+                    case R.id.nav_friends:
+                        Toast.makeText(MainActivity.this, "click friends", Toast.LENGTH_SHORT).show();
                         return true;
+                    case R.id.nav_discussion:
+                        Toast.makeText(MainActivity.this,"click discussion",Toast.LENGTH_SHORT).show();
+                    case R.id.nav_messages:
+                        Toast.makeText(MainActivity.this,"click message",Toast.LENGTH_SHORT).show();
                     default:
                         return false;
                 }
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //join drawyerlayout and toolbar
+        //join drawerlayout and toolbar
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
                 toolbar, R.string.openDrawer, R.string.closeDrawer) {
 

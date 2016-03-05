@@ -2,13 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navigation_item_1"
-            android:checked="true"
+            android:id="@+id/nav_home"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/navigation_item_1"/>
+            android:title="Home" />
         <item
-            android:id="@+id/navigation_item_2"
+            android:id="@+id/nav_messages"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/navigation_item_2"/>
+            android:title="Messages" />
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Friends" />
+        <item
+            android:id="@+id/nav_discussion"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Discussion" />
     </group>
+
+    <item android:title="Sub items">
+        <menu>
+            <item
+                android:icon="@mipmap/ic_launcher"
+                android:title="Sub item 1" />
+            <item
+                android:icon="@mipmap/ic_launcher"
+                android:title="Sub item 2" />
+        </menu>
+    </item>
 </menu>
